@@ -73,3 +73,10 @@ mult_digit(X,Y,Z):- X > 0,!,
     X1 is X div 10, Z1 is Z*(X mod 10),
     mult_digit(X1,Y,Z1).
 mult_digit(_,Y,Z):- Y is Z.
+%17
+max(0,0):-!.
+max(X,N):- 
+    X1 is X div 10,
+    max(X1,N1),
+    N2 is X mod 10,
+    (N2 mod 3=\=0,N2>N1, N is N2;N is N1),!.
