@@ -80,3 +80,8 @@ max(X,N):-
     max(X1,N1),
     N2 is X mod 10,
     (N2 mod 3=\=0,N2>N1, N is N2;N is N1),!.
+%18
+maxD(X,N):-maxD(X,0,N).
+maxD(0,Y,Y):-!.
+maxD(X,P,N):-D is X mod 10,D mod 3 =\= 0, (D>P, P1 is D; P1 is P),X1 is X div 10,maxD(X1,P1,N),!;
+    X2 is X div 10,maxD(X2,P,N). 
