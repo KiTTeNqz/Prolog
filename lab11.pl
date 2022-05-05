@@ -50,9 +50,12 @@ parent(zhdana,zlatomir).
 
 %11
 isFather(X,Y):-parent(X,Y),man(X).
-fatherFor(X):-parent(Y,X),man(Y),write(Y),nl,fail.
+fatherFor(X):-parent(Y,X),man(Y),write(Y),!.
 %12
 wife(X,Y):-parent(X, Z),parent(Y, Z),man(X),woman(Y).
-wifeOf(X):-wife(Y,X),write(Y),nl.
+wifeOf(X):-wife(X,Y),write(Y),nl.
+%13
+grand_da(X,Y):-parent(Y,Z),parent(Z,X),woman(X).
+grand_daOf(X):-grand_da(Y,X),write(Y),nl,fail.
 
-
+    
