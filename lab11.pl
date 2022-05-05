@@ -59,3 +59,11 @@ grand_da(X,Y):-parent(Y,Z),parent(Z,X),woman(X).
 grand_daOf(X):-grand_da(Y,X),write(Y),nl,fail.
 %14
 grand_ma_and_son(X,Y):-parent(X,Z),parent(Z,Y),woman(X),man(Y);parent(Y,Z),parent(Z,X),woman(Y),man(Z).
+%15
+multDig(X,_):-X<0, write("NO"),!.
+multDig(0,1):-!.
+multDig(X,RES):-
+    NEWX is X div 10,
+    DIGIT is X mod 10,
+    multDig(NEWX, NEWRES),
+    RES is NEWRES*DIGIT.
