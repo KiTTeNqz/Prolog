@@ -57,5 +57,5 @@ wifeOf(X):-wife(X,Y),write(Y),nl.
 %13
 grand_da(X,Y):-parent(Y,Z),parent(Z,X),woman(X).
 grand_daOf(X):-grand_da(Y,X),write(Y),nl,fail.
-
-    
+%14
+grand_ma_and_son(X,Y):-parent(X,Z),parent(Z,Y),woman(X),man(Y);parent(Y,Z),parent(Z,X),woman(Y),man(Z).
