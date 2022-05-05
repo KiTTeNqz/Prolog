@@ -51,3 +51,8 @@ parent(zhdana,zlatomir).
 %11
 isFather(X,Y):-parent(X,Y),man(X).
 fatherFor(X):-parent(Y,X),man(Y),write(Y),nl,fail.
+%12
+wife(X,Y):-parent(X, Z),parent(Y, Z),man(X),woman(Y).
+wifeOf(X):-wife(Y,X),write(Y),nl.
+
+
