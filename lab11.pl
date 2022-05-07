@@ -95,3 +95,7 @@ fib(N,X):-
     fib(N1,X1),
     fib(N2,X2),
     X is X1+X2.
+%20
+fibD(N,X):-fibD(1,1,2,N,X).
+fibD(_,F,N,N,F):-!.
+fibD(PREPRE,PRE,COUNT,N,X):- NEWNUM is PREPRE+PRE, COUNT1 is COUNT+1,fibD(PRE,NEWNUM,COUNT1,N,X).
