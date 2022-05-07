@@ -18,3 +18,17 @@ sumLess5(A,Sum):-(A mod 10)<5,!,
     A1 is A div 10,S is (A mod 10),sumLess5(A1,Sum1),Sum is Sum1+S.
 sumLess5(A,Sum):-A1 is A div 10, sumLess5(A1,Sum).
 
+minDel(_,_,0):-!.
+minDel(A,Del,I):- 0 is A mod I,!,
+    Del is I, minDel(A,Del,0).
+minDel(A,Del,I):- I1 is I +1, minDel(A,Del,I1).
+minDel(1,1):-!.
+minDel(0,1):-!.
+minDel(A,Del):- minDel(A,Del,2).
+
+findNum(_,_,_,1):-!,fail.
+findNum(A,X,Del,I):- not(nod(A,I,1)),not(0 is (I mod Del)),!,
+    X is I.
+findNum(A,X,Del,I):- I1 is I - 1, findNum(A,X,Del,I1).
+findNum(A,X):- minDel(A,Del),I is A - 1,findNum(A,X1,Del,I),sumLess5(A,Y),X is X1 * Y.
+
