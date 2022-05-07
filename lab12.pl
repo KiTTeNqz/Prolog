@@ -32,3 +32,12 @@ findNum(A,X,Del,I):- not(nod(A,I,1)),not(0 is (I mod Del)),!,
 findNum(A,X,Del,I):- I1 is I - 1, findNum(A,X,Del,I1).
 findNum(A,X):- minDel(A,Del),I is A - 1,findNum(A,X1,Del,I),sumLess5(A,Y),X is X1 * Y.
 
+%3
+
+digitDeg(0,0):- !.
+digitDeg(A,X):- A1 is A div 10,digitDeg(A1,X1),X is X1 +1.
+
+solve13(N,X):-digitDeg(N,L),1 is L,!,solve13(N,X,0).
+solve13(0,XX,XX):-!.
+solve13(N,X,SUM):-N1 is N-1, !, pow(10, N1, Y),
+    NEWSUM is (N*Y+SUM), solve13(N1,X,NEWSUM).
