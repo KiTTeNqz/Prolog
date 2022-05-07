@@ -12,5 +12,9 @@ rec1(N,I,Count):-0 is I mod 2,not(nod(N,I,1)), I1 is I+1,rec1(N,I1,Count1), Coun
 kolvo_vp_delD(N,Count):-rec2(N,Count,N,0).
 rec2(N,R,0,R):-!.
 rec2(N,Count,I,R):- I1 is I-1,(0 is I mod 2,not(nod(N,I,1)),R1 is R+1,rec2(N,Count,I1,R1),!;rec2(N,Count,I1,R)),!.
-
+%2
+sumLess5(0,0):-!.
+sumLess5(A,Sum):-(A mod 10)<5,!,
+    A1 is A div 10,S is (A mod 10),sumLess5(A1,Sum1),Sum is Sum1+S.
+sumLess5(A,Sum):-A1 is A div 10, sumLess5(A1,Sum).
 
