@@ -45,6 +45,8 @@ solve13(N,X,SUM):-N1 is N-1, !, pow(10, N1, Y),
 %4
 lenght([],0).
 lenght([_|Tail],X) :- lenght(Tail,V), X is V + 1.
+concat([],B,B):-!.
+concat([H|T],B,[H|Tail]):- concat(T,B,Tail).
 %5
 listMin([],X,Z) :- X is Z.
 listMin([H|T],X,Z) :- 
@@ -72,8 +74,14 @@ solve15([H|T],[H|Tn],Min,Count):-H is Min,!,
     Count1 is Count-1, solve15(T,Tn,Min,Count1).
 solve15([H|T],[H|Tn],Min,Count):-solve15(T,Tn,Min,Count).
 solve15(List,Newlist):-listMin(List,Min),countDigits(List,Min,Count),solve15(List,Newlist,Min,Count).
-%6
-getByIndex([X|_], 0, X):-!.
-getByIndex([_|T], Ind, Res):-Ind1 is Ind-1, getByIndex(T, Ind1, Res).
+
 %7
 countMinInInt(List,A,B,X):-listMin(List,Min),countDigitsInInt(List,Min,X,0,A,B).
+
+%8
+listMax2([],X,Y,Z,Z2) :- Y is Z2, X is Z.
+listMax2([H|T],X,Y,Z,Z2) :- 
+    NewZ is max(H, Z),
+    NewZ2 is Z,
+    listMax2(T,X,Y,NewZ,NewZ2).
+listMax2([H|T],X,Y) :- listMax2([H|T],X,Y,H,H).
