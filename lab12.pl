@@ -90,3 +90,8 @@ solve19([],0):-!.
 solve19([H|T],X):-0 is H mod 2,!,
     solve19(T,X1), X is X1+1.
 solve19([_|T],Count):-solve19(T,Count).
+%10
+solve20([],_,_,[]):-!.
+solve20([H|T],A,B,[H|Tn]):- H>=A,H=<B,!,
+    solve20(T,A,B,Tn).
+solve20([_|T],A,B,X):- solve20(T,A,B,X).
