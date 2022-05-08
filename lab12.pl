@@ -62,8 +62,18 @@ countDigits([H|T],X,Q):- H is X,!,
     countDigits(T,X,Q1),Q is Q1 +1.
 countDigits([_|T],X,Q):- countDigits(T,X,Q).
 
+countDigitsInInt(_,_,X,B,A,B):- X is 0,!.
+countDigitsInInt([H|T],X,Q,Ind,A,B):- H is X, Ind>A , Ind<B,Ind1 is Ind+1,!,
+    countDigitsInInt(T,X,Q1,Ind1,A,B),Q is Q1 +1.
+countDigitsInInt([_|T],X,Q,Ind,A,B):- Ind1 is Ind+1, countDigitsInInt(T,X,Q,Ind1,A,B).
+
 solve15([H|_],[],Min,Count):- Count is 1, H is Min,!.
 solve15([H|T],[H|Tn],Min,Count):-H is Min,!,
     Count1 is Count-1, solve15(T,Tn,Min,Count1).
 solve15([H|T],[H|Tn],Min,Count):-solve15(T,Tn,Min,Count).
 solve15(List,Newlist):-listMin(List,Min),countDigits(List,Min,Count),solve15(List,Newlist,Min,Count).
+%6
+getByIndex([X|_], 0, X):-!.
+getByIndex([_|T], Ind, Res):-Ind1 is Ind-1, getByIndex(T, Ind1, Res).
+%7
+countMinInInt(List,A,B,X):-listMin(List,Min),countDigitsInInt(List,Min,X,0,A,B).
