@@ -45,3 +45,25 @@ solve13(N,X,SUM):-N1 is N-1, !, pow(10, N1, Y),
 %4
 lenght([],0).
 lenght([_|Tail],X) :- lenght(Tail,V), X is V + 1.
+%5
+listMin([],X,Z) :- X is Z.
+listMin([H|T],X,Z) :- 
+    NewZ is min(H,Z),
+    listMin(T,X,NewZ).
+listMin([H|T],X) :- listMin([H|T],X,H).
+
+revList([],Dest,Source):-Dest = Source.
+revList([H|T],Dest,Source):-
+    revList(T,Dest,[H|Source]).
+revList(List,RevList):-revList(List, RevList, []).
+
+countDigits([],_,0):-!.
+countDigits([H|T],X,Q):- H is X,!,
+    countDigits(T,X,Q1),Q is Q1 +1.
+countDigits([_|T],X,Q):- countDigits(T,X,Q).
+
+solve15([H|_],[],Min,Count):- Count is 1, H is Min,!.
+solve15([H|T],[H|Tn],Min,Count):-H is Min,!,
+    Count1 is Count-1, solve15(T,Tn,Min,Count1).
+solve15([H|T],[H|Tn],Min,Count):-solve15(T,Tn,Min,Count).
+solve15(List,Newlist):-listMin(List,Min),countDigits(List,Min,Count),solve15(List,Newlist,Min,Count).
