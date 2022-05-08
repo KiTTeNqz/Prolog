@@ -60,14 +60,14 @@ revList([H|T],Dest,Source):-
 revList(List,RevList):-revList(List, RevList, []).
 
 countDigits([],_,0):-!.
-countDigits([H|T],X,Q):- H is X,!,
-    countDigits(T,X,Q1),Q is Q1 +1.
-countDigits([_|T],X,Q):- countDigits(T,X,Q).
+countDigits([H|T],X,C):- H is X,!,
+    countDigits(T,X,C1),C is C1 +1.
+countDigits([_|T],X,C):- countDigits(T,X,C).
 
 countDigitsInInt(_,_,X,B,A,B):- X is 0,!.
-countDigitsInInt([H|T],X,Q,Ind,A,B):- H is X, Ind>A , Ind<B,Ind1 is Ind+1,!,
-    countDigitsInInt(T,X,Q1,Ind1,A,B),Q is Q1 +1.
-countDigitsInInt([_|T],X,Q,Ind,A,B):- Ind1 is Ind+1, countDigitsInInt(T,X,Q,Ind1,A,B).
+countDigitsInInt([H|T],X,C,Ind,A,B):- H is X, Ind>A , Ind<B,Ind1 is Ind+1,!,
+    countDigitsInInt(T,X,C1,Ind1,A,B),C is C1 +1.
+countDigitsInInt([_|T],X,C,Ind,A,B):- Ind1 is Ind+1, countDigitsInInt(T,X,C,Ind1,A,B).
 
 solve15([H|_],[],Min,Count):- Count is 1, H is Min,!.
 solve15([H|T],[H|Tn],Min,Count):-H is Min,!,
@@ -85,3 +85,8 @@ listMax2([H|T],X,Y,Z,Z2) :-
     NewZ2 is Z,
     listMax2(T,X,Y,NewZ,NewZ2).
 listMax2([H|T],X,Y) :- listMax2([H|T],X,Y,H,H).
+%9
+solve19([],0):-!.
+solve19([H|T],X):-0 is H mod 2,!,
+    solve19(T,X1), X is X1+1.
+solve19([_|T],Count):-solve19(T,Count).
