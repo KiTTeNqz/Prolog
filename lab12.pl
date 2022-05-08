@@ -41,3 +41,7 @@ solve13(N,X):-digitDeg(N,L),1 is L,!,solve13(N,X,0).
 solve13(0,XX,XX):-!.
 solve13(N,X,SUM):-N1 is N-1, !, pow(10, N1, Y),
     NEWSUM is (N*Y+SUM), solve13(N1,X,NEWSUM).
+
+%4
+lenght([],0).
+lenght([_|Tail],X) :- lenght(Tail,V), X is V + 1.
