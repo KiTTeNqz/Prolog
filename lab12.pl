@@ -47,6 +47,12 @@ lenght([],0).
 lenght([_|Tail],X) :- lenght(Tail,V), X is V + 1.
 concat([],B,B):-!.
 concat([H|T],B,[H|Tail]):- concat(T,B,Tail).
+
+read_list(0, []) :- !.
+read_list(I, [X|T]) :- read(X), I1 is I - 1, read_list(I1, T).
+
+write_list([]) :- !.
+write_list([X|T]) :- write(X), nl, write_list(T).
 %5
 listMin([],X,Z) :- X is Z.
 listMin([H|T],X,Z) :- 
@@ -95,3 +101,30 @@ solve20([],_,_,[]):-!.
 solve20([H|T],A,B,[H|Tn]):- H>=A,H=<B,!,
     solve20(T,A,B,Tn).
 solve20([_|T],A,B,X):- solve20(T,A,B,X).
+
+%6
+getByIndex([X|_], 0, X):-!.
+getByIndex([_|T], Ind, Res):-Ind1 is Ind-1, getByIndex(T, Ind1, Res).
+
+listMax([],X,Z) :- X is Z.
+listMax([H|T],X,Z) :- 
+    NewZ is max(H, Z),
+    listMax(T,X,NewZ).
+listMax([H|T],X) :- listMax([H|T],X,H).
+
+solve16([],[],[],[],_,_,_,_):-!.
+
+solve16([H|T],[H|Tn],L2,L3,Max,Min,Fx,Fn):-H is Min,!,
+    Fn0 is Fn - 1,solve16(T,Tn,L2,L3,Max,Min,Fx,Fn0).
+solve16([H|T],[H|Tn],L2,L3,Max,Min,Fx,Fn):-Fn is 1,!,
+    solve16(T,Tn,L2,L3,Max,Min,Fx,Fn).
+
+solve16([H|T],L1,L2,[H|Tn],Max,Min,Fx,Fn):-H is Max,!,
+    Fx0 is Fx - 1,solve16(T,L1,L2,Tn,Max,Min,Fx0,Fn).
+solve16([H|T],L1,L2,[H|Tn],Max,Min,Fx,Fn):-Fx is 0,!,
+    solve16(T,L1,L2,Tn,Max,Min,Fx,Fn).
+
+solve16([H|T],L1,[H|Tn],L3,Max,Min,Fx,Fn):-Fx is 1,Fn is 0,
+    solve16(T,L1,Tn,L3,Max,Min,Fx,Fn).
+solve16(List,NewList):-
+    listMin(List,Min),listMax(List,Max),solve16(List,List1,List2,List3,Max,Min,1,1),revList(List2,ListR),concat(List1,ListR,NewList1),concat(NewList1,List3,NewList).
