@@ -45,6 +45,8 @@ solve13(N,X,SUM):-N1 is N-1, !, pow(10, N1, Y),
 %4
 lenght([],0).
 lenght([_|Tail],X) :- lenght(Tail,V), X is V + 1.
+
+
 concat([],B,B):-!.
 concat([H|T],B,[H|Tail]):- concat(T,B,Tail).
 
