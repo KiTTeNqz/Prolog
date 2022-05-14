@@ -9,6 +9,9 @@ listExclude([H|T],El,[H|Tail]):-listExclude(T,El,Tail).
 in_list(El,[El|_]):-!.
 in_list(El,[_|Tail]) :- in_list(El,Tail).
 
+contains([El|_],El).
+contains([_|T],El):-contains(T,El).
+
 %1(40)
 isEvenInList([H|T]):-
     0 is H mod 2,!;
@@ -19,10 +22,16 @@ firstEven([H|T], X):-
     X is H,!;
     firstEven(T,X).
 
-listMinEven2([H|T],_):-not(isEvenInList([H|T])),!,write("No Even Nums"),fail.
-listMinEven2([H|T],X):-
-    listMin([H|T],X), 0 is X mod 2,!;
-    del_el([H|T],X,[H|Tn]),listMinEven([H|Tn],Y).
+listMinEven2(List,_):-not(isEvenInList(List)),!,write("No Even Nums"),fail.
+listMinEven2(List,X):-
+    listMin(List,X), 0 is X mod 2,!;
+    del_el(List,X,List2),listMinEven(List2,Y).
+
+%2(46)
+solve_46([H|T],X,[H|Tn],ListPos):-H<0,!,solve_46(T,X,Tn,ListPos).
+solve_46([H|T],X,ListNeg,[H|Tn]):-H>=0,!,solve_46(T,X,ListNeg,Tn).
+solve_46([],X,[],[]):-!.
+solve_46([H|T],X):-solve_46([H|T],X,ListNeg,ListPos),concat(ListPos,ListNeg,X).
 
 
 
