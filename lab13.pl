@@ -45,3 +45,23 @@ hairStyle:-
     not(contains(List,[rizhov,rizhiy])),
     not(contains(List,[chernov,brunet])),
     write_list(List),!.
+
+%5
+%имя платье туфли
+triDevici:-
+    List=[_,_,_],
+    contains(List,[_,white,_]),
+    contains(List,[_,blue,_]),
+    contains(List,[_,green,_]),
+    contains(List,[_,_,white]),
+    contains(List,[_,_,blue]),
+    contains(List,[_,_,green]),
+    contains(List,[ann,_,_]),
+    contains(List,[valya,_,_]),
+    contains(List,[natasha,_,_]),
+    contains(List,[ann,A,A]),
+    not(contains(List,[valya,white,white])),
+    not(contains(List,[valya,B,B])),
+    not(contains(List,[natasha,C,C])),
+    contains(List,[natasha,_,green]),
+    write_list(List),!.
