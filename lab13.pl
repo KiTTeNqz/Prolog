@@ -33,5 +33,15 @@ solve_46([H|T],X,ListNeg,[H|Tn]):-H>=0,!,solve_46(T,X,ListNeg,Tn).
 solve_46([],X,[],[]):-!.
 solve_46([H|T],X):-solve_46([H|T],X,ListNeg,ListPos),concat(ListPos,ListNeg,X).
 
-
-
+%4
+hairStyle:-
+    List = [_,_,_],
+    contains(List,[belocurov,_]),
+    contains(List,[rizhov,_]),
+    contains(List,[chernov,_]),
+    contains(List,[_,rizhiy]),
+    contains(List,[_,blondin]),
+    contains(List,[_,brunet]),
+    not(contains(List,[rizhov,rizhiy])),
+    not(contains(List,[chernov,brunet])),
+    write_list(List),!.
