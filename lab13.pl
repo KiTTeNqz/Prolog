@@ -93,7 +93,38 @@ zavod:-
     contains(List,[B,semenov,_]),
     B>A,
     write_list(List),!.
+%7
+sleva(_,_,[_]):-fail.
+sleva(A,B,[B|[A|_]]).
+sleva(A,B,[_|T]):-sleva(A,B,T).
 
+sprava(_,_,[_]):-fail.
+sprava(A,B,[A|[B|_]]).
+sprava(A,B,[_|T]):-sprava(A,B,T).
+
+okolo(A,B,List):-sleva(A,B,List).
+okolo(A,B,List):-sprava(A,B,List).
+
+%бутылка, стакан, кувшин, банка. Молоко,лимонад,квас,вода
+steklotara:-
+    List = [_,_,_,_],
+    contains(List,[bottle,_]),
+    contains(List,[glass,_]),
+    contains(List,[jug,_]),
+    contains(List,[jar,_]),
+    contains(List,[_,moloko]),
+    contains(List,[_,lemonade]),
+    contains(List,[_,kvas]),
+    contains(List,[_,water]),
+    not(contains(List,[bottle,water])),
+    not(contains(List,[bottle,moloko])),
+    sprava([jug,_],[_,lemonade],List),
+    sprava([_,lemonade],[_,kvas],List),
+    not(contains(List,[jar,water])),
+    not(contains(List,[jar,lemonade])),
+    okolo([glass,_],[jar,_],List),
+    okolo([glass,_],[_,moloko],List),
+    write_list(List),!.
 
     
 
