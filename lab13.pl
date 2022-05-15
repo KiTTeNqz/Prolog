@@ -80,8 +80,24 @@ triDevici:-
     not(contains(List,[natasha,C,C])),
     contains(List,[natasha,_,green]),
     write_list(List),!.
-%10
-%имя,номер дня
+%6
+zavod:-
+    List=[_,_,_],
+    contains(List,[1,_,_]),
+    contains(List,[2,_,_]),
+    contains(List,[0,_,slesar]),
+    contains(List,[A,_,tokar]),
+    contains(List,[_,_,svarshik]),
+    contains(List,[_,borisov,_]),
+    contains(List,[_,ivanov,_]),
+    contains(List,[B,semenov,_]),
+    B>A,
+    write_list(List),!.
+
+
+    
+
+
 
 
 
