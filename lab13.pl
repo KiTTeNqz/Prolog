@@ -33,6 +33,21 @@ solve_46([H|T],X,ListNeg,[H|Tn]):-H>=0,!,solve_46(T,X,ListNeg,Tn).
 solve_46([],X,[],[]):-!.
 solve_46([H|T],X):-solve_46([H|T],X,ListNeg,ListPos),concat(ListPos,ListNeg,X).
 
+%3(58)
+%берём элемент
+in_list1([El|_],El).
+in_list1([_|T],El):-in_list1(T,El).
+
+isSumOf2(List,El):-
+    in_list1(List,A),
+    in_list1(List,B),
+    El is A+B,!.
+
+solve58([],C,C,_):-!.  
+solve58([H|T],C,Count,BL):-isSumOf2(BL,H), C1 is C+1, solve58(T,C1,Count,BL),!;
+    solve58(T,C,Count,BL).
+solve58(List,Count):-solve58(List,0,Count,List).
+
 %4
 hairStyle:-
     List = [_,_,_],
@@ -65,3 +80,9 @@ triDevici:-
     not(contains(List,[natasha,C,C])),
     contains(List,[natasha,_,green]),
     write_list(List),!.
+%10
+%имя,номер дня
+
+
+
+
