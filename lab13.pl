@@ -126,6 +126,25 @@ steklotara:-
     okolo([glass,_],[_,moloko],List),
     write_list(List),!.
 
+%8
+people:-
+    List =[_,_,_,_],
+    contains(List,[voronov,_]),
+    contains(List,[pavlov,_]),
+    contains(List,[levitskiy,_]),
+    contains(List,[saharov,_]),
+    contains(List,[_,dancer]),
+    contains(List,[_,artist]),
+    contains(List,[_,singer]),
+    contains(List,[_,writer]),
+    not(contains(List,[voronov,singer])),
+    not(contains(List,[levitskiy,singer])),
+    not(contains(List,[pavlov,artist])),
+    not(contains(List,[pavlov,writer])),
+    not(contains(List,[saharov,writer])),
+    not(contains(List,[voronov,writer])),
+    write_list(List),!.
+
     
 
 
