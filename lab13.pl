@@ -162,7 +162,21 @@ zaruba:-
     A<D,
     B<C,
     write_list(List),!.
-    
+%10
+%имя велик родина
+velik:-
+    List = [_,_,_,_,_],
+    contains(List,[_,_,kharkov]),
+    contains(List,[_,_,moscow]),
+    contains(List,[_,lvov,_]),
+    contains(List,[sergey,riga,_]),
+    contains(List,[boris,penza,riga]),
+    contains(List,[leonid,_,X]),
+    contains(List,[_,X,penza]),
+    contains(List,[gregory,kharkov,_]),
+    contains(List,[victor,moscow,lvov]),
+    not(contains(List,[_,A,A])),
+    write_list(List),!.    
 
 
 
