@@ -144,7 +144,24 @@ people:-
     not(contains(List,[saharov,writer])),
     not(contains(List,[voronov,writer])),
     write_list(List),!.
-
+%9
+zaruba:-
+    List = [_,_,_],
+    contains(List,[_,_,cricket,1]),
+    contains(List,[_,_,_,2]),
+    contains(List,[_,_,_,3]),
+    contains(List,[israel,simon,_,A]),
+    contains(List,[_,michael,basket,B]),
+    contains(List,[_,richard,_,_]),
+    contains(List,[australian,_,_,_]),
+    contains(List,[american,_,_,C]),
+    contains(List,[_,_,tennis,D]),
+    not(contains(List,[american,michael,_,_])),
+    not(contains(List,[_,simon,tennis,_])),
+    contains(List,[_,_,cricket,1]),
+    A<D,
+    B<C,
+    write_list(List),!.
     
 
 
